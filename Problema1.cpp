@@ -3,16 +3,23 @@
 #include <cmath>
 #include <limits>
 using namespace std;
-void ingreso_numeros(double &a,double &b,double &c);
+void ingreso_numeros(double &a,double &b,double &c,double &discriminante);
 double validar(const string& mensaje, const string& error);
 void calcularRaices(double a, double b, double c, double* r1, double* r2,double discriminante);
 void validacion_discriminante(double discriminante,double raiz1,double raiz2);
+
+
+
+
+//Función main que define las variables a utilizar, también llama las funciones necesarias para el cálculo de las raices y validación del discriminante.
+
+
 int main() {
     double a, b, c;
+    double discriminante;
     double raiz1, raiz2;
     cout << "Bienvenido al solucionador de ecuaciones cuadráticas, ingrese los valores para a, b y c para conocer sus raices reales."<< endl;
-    ingreso_numeros(a,b,c);
-    double discriminante = b*b - 4*a*c;
+    ingreso_numeros(a,b,c, discriminante);
     calcularRaices(a, b, c, &raiz1, &raiz2, discriminante); // le paso la dirección de memoria
     validacion_discriminante(discriminante,raiz1,raiz2);
 
@@ -20,8 +27,8 @@ int main() {
 
 
 }
-
- void ingreso_numeros(double &a,double &b,double &c){
+//Una función void que valida lo ingresado por el usuario y calcula el discriminante.
+ void ingreso_numeros(double &a,double &b,double &c, double &discriminante){
 
     a = validar( "Ingrese el valor para a: ", "Error: debe ingresar un número.");
     cout << "Número ingresado: " << a << endl;
@@ -34,9 +41,10 @@ int main() {
     c = validar( "Ingrese el valor para c: ", "Error: debe ingresar un número.");
     cout << "Número ingresado: " << c << endl;
     cout << "La funcion ingresada corresponde a: "<< a <<"X^2+"<< b << "X+"<<c<<endl;
+    discriminante = b*b - 4*a*c;
 }
 
-
+//Función que valida el discriminante, otorgando así la cantidad de raices reales que este determine.
 void validacion_discriminante(double discriminante,double raiz1,double raiz2){
     if (discriminante>0){
         cout<< "La ecuación tiene dos raices reales"<<endl;
@@ -56,7 +64,7 @@ void validacion_discriminante(double discriminante,double raiz1,double raiz2){
 }
 
 
-
+//Función general para validar datos numéricos positivos.
 double validar(const string& mensaje, const string& error) {
     double valor;
     bool valor_bueno = false;
@@ -76,6 +84,8 @@ double validar(const string& mensaje, const string& error) {
 
     return valor;
 }
+
+//Función sencilla que calcula las raices de los coeficientes otorgados.
 void calcularRaices(double a, double b, double c, double* r1, double* r2,double discriminante) {
     if (discriminante >= 0) {
         *r1 = (-b + sqrt(discriminante)) / (2*a); // se guarda en la variable "afuera"

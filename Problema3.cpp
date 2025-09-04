@@ -14,15 +14,11 @@ void temperaturas_celsius(double* lista_temperatura, int longitud_lista);
 void temperaturas_fahrenheit(double* temperaturas, int longitud_lista);
 double temperaturas[] = {22.5, 24.1, 21.9, 25.3, 26.0, 19.8, 23.7, 28.1, 18.5, 22.5};
 
-
+//Función main donde se define la longitud de lista y se ejecuta el menú
 
 int main() {
     int longitud_lista = 10;
     menu(longitud_lista);
-    cout << "Programa terminado." << endl;
-    cout << "Presione ENTER para salir...";
-    cin.ignore(); // descarta lo que haya en el buffer
-    cin.get();    // espera ENTER
 return 0;
 
 }
@@ -32,6 +28,7 @@ return 0;
 
 
 
+//Función general para validar datos numéricos positivos.
 double validar(const string& mensaje, const string& error) {
     double valor;
     bool valor_bueno = false;
@@ -50,7 +47,7 @@ double validar(const string& mensaje, const string& error) {
     }
     return valor;
 }
-
+//Función que ejecuta el menú para mantener un orden en el programa.
 void menu(int longitud_lista){
 
     cout << "Bienvenido al Analizador de Datos de Sensores de temperatura.\n Por favor, ingrese una de las siguientes opciones: "<<endl;
@@ -81,12 +78,12 @@ void menu(int longitud_lista){
     bucle=false;
     break;
     default:
-    cout<<"Por favor ingrese alguna de las opciones indicadas acontinuacion.\n ";
+    cout<<"Por favor ingrese alguna de las opciones indicadas anteriormente.\n ";
         break;
     }}
 
 }
-
+//Función que ejecuta una acción de calcular promedio para las temperaturas dadas.
 void calcular_promedio(double* lista_temperatura, int longitud_lista){
     double suma = 0;
     for (int i = 0; i < longitud_lista; i++) {
@@ -95,7 +92,7 @@ void calcular_promedio(double* lista_temperatura, int longitud_lista){
     cout << "El promedio entre los datos registrados para la temperatura corresponde a : " <<suma / longitud_lista<<"C "<<endl<<endl;
 
 }
-
+//Función que calcula los valores maximos y minimos para los datos registrados.
 void maximos_minimos(double* lista_temperatura, int longitud_lista){
     double menor;
     double mayor;
@@ -110,7 +107,7 @@ void maximos_minimos(double* lista_temperatura, int longitud_lista){
         
     cout << "El valor mas alto registrado en las mediciones es " << mayor<<"C y el mas bajo registrado en las mediciones es "<< menor<<"C "<<endl<<endl;
 }
-
+//Función que contabiliza los valores mayores a cierto umbral dado por el usuario.
 void superior_a_umbral(double* lista_temperatura,int longitud_lista){
     float valor_ingresado;
     int contador=0;
@@ -121,6 +118,8 @@ void superior_a_umbral(double* lista_temperatura,int longitud_lista){
         }}
     cout<<"Hay "<<contador<<" temperaturas en la lista mayores a "<<valor_ingresado<<"C"<<endl;
 }
+
+//Función que imprime en terminal la temperatura en grados Celsius.
 void temperaturas_celsius(double* lista_temperatura, int longitud_lista){
     cout<<"----Valores en Celsius para las temperaturas registradas----"<<endl;
     for (int i=0; i<longitud_lista; i++){
@@ -132,7 +131,7 @@ void temperaturas_celsius(double* lista_temperatura, int longitud_lista){
     }
 }
 
-
+//Función que transforma de Celsius a Fahrenheit y las imprime en terminal.
 void temperaturas_fahrenheit(double*lista_temperatura, int longitud_lista){
 
     cout<<"----Valores en Fahrenheit para las temperaturas registradas----"<<endl;

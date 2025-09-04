@@ -13,13 +13,13 @@ double validar(const string& mensaje, const string& error);
 void agregar(vector<string>& tareas);
 void ver(vector<string>& tareas);
 void completar(vector<string>& tareas);
+
+
+
+//Función main que define el vector tareas y ejecuta el menú.
 int main(){
 vector<string> tareas;
 menu(tareas);
-cout << "Programa terminado." << endl;
-cout << "Presione ENTER para salir...";
-cin.ignore(); // descarta lo que haya en el buffer
-cin.get();    // espera ENTER
 return 0;
 }
 
@@ -28,7 +28,7 @@ return 0;
 
 
 
-
+//Función que ejecuta el menú para un mayor orden en el código.
 void menu(vector<string>& tareas){
     cout << "---Mi lista de tareas---"<<endl;
     int eleccion;
@@ -60,7 +60,7 @@ void menu(vector<string>& tareas){
 
 
 
-
+//Función general de validación para valores numéricos positivos.
 double validar(const string& mensaje, const string& error) {
     double valor;
     bool valor_bueno = false;
@@ -79,7 +79,7 @@ double validar(const string& mensaje, const string& error) {
     }
     return valor;}
 
-
+//Función que agrega tareas al vector
 void agregar(vector<string>& tareas){
 
     string tarea_nueva;
@@ -88,7 +88,7 @@ void agregar(vector<string>& tareas){
     cin >> tarea_nueva;
     tareas.push_back(tarea_nueva);
 }
-
+//Función que muestra las tareas pendientes al usuario.
 void ver(vector<string>& tareas){
     if(tareas.size()==0){
             cout << "Su lista de tareas está vacía"<<endl;}
@@ -96,7 +96,7 @@ void ver(vector<string>& tareas){
             for (int i=0; i<tareas.size(); i++){
                 cout <<i+1<<". " <<tareas[i]<<endl;}
             cout <<"-----------------------"<<endl;}}
-
+//Función que determina las tareas completadas por el usuario y las elimina del vector.
 void completar(vector<string>& tareas){
     int tarea_completada =0;
     tarea_completada=validar("Ingrese la tarea que desea marcar como completada: ", "Error, debe ingresar solo valores numéricos:");
